@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Wrap God PPF Coimbatore</title>
+    <meta name="description" content="Get in touch with Wrap God PPF Coimbatore for a free quote on Paint Protection Film, Ceramic Coating, and more.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .contact-page-hero {
+            padding: 10rem 0 5rem;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(5,5,5,1)), url('images/hero.png');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+        
+        .back-home {
+            margin-bottom: 2rem;
+            display: inline-block;
+            color: var(--primary-color);
+        }
+    </style>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header" class="scrolled">
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo_new.png" alt="Wrap God PPF Logo" class="logo-img">
+                </a>
+            </div>
+            <nav id="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="contact.html" class="btn btn-primary">Get Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-page-hero">
+            <div class="container fade-in">
+                <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                <h1>Get in Touch</h1>
+                <p>Have questions about protecting your car? We are here to help.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container fade-in">
+                <div class="grid grid-2">
+                    <div class="contact-info">
+                        <h2 class="section-title">Visit Our Studio</h2>
+                        <p class="mb-4">We are located at Next to Lakshmi Mills, Avinashi Road, Coimbatore, Tamil Nadu 641037, ready to give your car the protection it deserves.</p>
+                        
+                        <div class="contact-methods">
+                            <a href="tel:+918531007766" class="method fade-in">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h5>Call/Text</h5>
+                                    <p>+91 85310 07766</p>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/918531007766" class="method fade-in" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                <div>
+                                    <h5>WhatsApp</h5>
+                                    <p>Instant support available</p>
+                                </div>
+                            </a>
+                            <a href="mailto:wrapgodppf@gmail.com" class="method fade-in">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h5>Email</h5>
+                                    <p>wrapgodppf@gmail.com</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="map-container fade-in" style="height: 350px; margin-top: 2rem;">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62659.8510887103!2d76.92087225820312!3d11.020353400000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859af2f97459b%3A0xa542345678!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1712390000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="contact-form-wrapper fade-in">
+                        <div class="glass-card">
+                            <h3 style="margin-bottom: 2rem; color: var(--primary-color);">Request a Quote</h3>
+                            <form id="contact-form" action="https://formsubmit.co/dd2372449@gmail.com" method="POST">
+                                <!-- Hidden Honeypot for Spam Protection -->
+                                <input type="text" name="_honey" style="display:none">
+                                <!-- Disable Captcha for smoother experience -->
+                                <input type="hidden" name="_captcha" value="false">
+                                <div class="form-group">
+                                    <label for="c-name">Full Name</label>
+                                    <input type="text" id="c-name" name="name" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="c-phone">Phone Number</label>
+                                    <input type="tel" id="c-phone" name="phone" placeholder="Mobile Number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="c-email">Email (Optional)</label>
+                                    <input type="email" id="c-email" name="email" placeholder="Your Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="c-vehicle">Vehicle Model</label>
+                                    <input type="text" id="c-vehicle" name="vehicle" placeholder="e.g. BMW M4" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="c-service">Select Service</label>
+                                    <select id="c-service" name="service" required>
+                                        <option value="" disabled selected>Select Series</option>
+                                        <option value="aura">AURA Series (5-Year)</option>
+                                        <option value="centurion">CENTURION Series (8-Year)</option>
+                                        <option value="demigod">DEMIGOD Series (10-Year)</option>
+                                        <option value="immortal">IMMORTAL Series (Lifetime)</option>
+                                        <option value="other">Other Services</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="c-message">Message</label>
+                                    <textarea id="c-message" name="message" rows="4" placeholder="Any special requests?"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="footer-logo" style="margin-bottom: 1rem;">
+                <img src="images/logo_new.png" alt="Wrap God PPF Logo" class="logo-img" style="margin: 0 auto; height: 75px;">
+            </div>
+            <p>Premium Paint Protection Film Services in Coimbatore. Excellence in every detail.</p>
+            <ul class="social-icons">
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/wrapgodppf?utm_source=qr&igsh=b3JlZTN0a3phcHRn" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+            <p>&copy; 2026 Wrap God PPF Coimbatore. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
