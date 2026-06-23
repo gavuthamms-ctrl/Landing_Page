@@ -1,6 +1,6 @@
 :root {
     --primary-color: #99cc33; /* Lime Green from Logo */
-    --accent-color: #ed1c24; /* Red from Logo */
+    --accent-color: #99cc33; /* Red from Logo */
     --bg-dark: #000000; /* Pure Black for pure luxury */
     --bg-gradient-start: #000000;
     --bg-gradient-end: #0a1202; /* Stealth Moss - Very subtle deep green */
@@ -10,6 +10,7 @@
     --glass-border: rgba(153, 204, 51, 0.15);
     --transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
     --shadow-glow: 0 0 20px rgba(153, 204, 51, 0.2);
+    --container-max: min(90%, 1400px); /* Smart wide-screen scaling */
 }
 
 * {
@@ -42,8 +43,76 @@ html.lenis {
   pointer-events: none;
 }
 
+/* --- THE FINAL 1% PREMIUM DETAILS --- */
+
+/* 1. Custom Text Selection */
+::selection {
+    background-color: var(--primary-color);
+    color: #000000;
+}
+::-moz-selection {
+    background-color: var(--primary-color);
+    color: #000000;
+}
+
+/* 2. Stealth Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #050505; 
+    border-left: 1px solid rgba(255,255,255,0.05);
+}
+::-webkit-scrollbar-thumb {
+    background: #222222; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color); 
+}
+
+/* 3. Luxury Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(153, 204, 51, 0.5); /* Primary green but softer */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+.custom-cursor-follower.active {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(153, 204, 51, 0.1);
+    border-color: var(--primary-color);
+}
+
+@media (min-width: 993px) {
+    /* Hide the standard Windows pointing cursor on Desktop */
+    body, a, button, input, textarea, .why-item {
+        cursor: none !important; 
+    }
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     background-attachment: fixed;
     color: var(--text-light);
@@ -71,11 +140,11 @@ body::before {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Syncopate', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    line-height: 1.2;
+    letter-spacing: clamp(1px, 0.5vw, 4px);
+    line-height: 1.1;
     background: linear-gradient(180deg, #ffffff 0%, #bbbbbb 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -100,13 +169,13 @@ img {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .section {
-    padding: 6rem 0;
+    padding: clamp(4rem, 10vh, 8rem) 0;
 }
 
 .bg-dark {
@@ -127,13 +196,32 @@ img {
     perspective: 1500px; /* Essential for 3D reveal depth */
 }
 
-.grid-2 { --cols: 2; }
-.grid-3 { --cols: 3; }
-.grid-4 { --cols: 4; }
+.grid-2, .grid-3, .grid-4 { --cols: 1; }
+
+@media (min-width: 768px) {
+    .grid-2 { --cols: 2; }
+    .grid-3 { --cols: 2; }
+    .grid-4 { --cols: 2; }
+}
+
+@media (min-width: 1200px) {
+    .grid-3 { --cols: 3; }
+    .grid-4 { --cols: 4; }
+}
+
+/* Force mobile-first grids */
+@media (max-width: 991px) {
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr !important;
+    }
+}
 
 @media (max-width: 768px) {
     h1, h2, h3, h4 {
-        letter-spacing: 2px; /* Scale down for mobile */
+        letter-spacing: 1px; /* Scale down for mobile */
+    }
+    .section {
+        padding: 3rem 0; /* Tighter padding for mobile */
     }
 }
 
@@ -143,10 +231,19 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    padding: 0.8rem 0; /* Reduced from 1.5rem to balance larger logo */
+    z-index: 9999;
+    padding: 0.5rem 0; /* Reduced mobile padding */
     background: transparent;
-    transition: var(--transition);
+    transition: var(--transition), transform 0.4s ease;
+}
+
+@media (max-width: 992px) {
+    .header-cta {
+        display: none; /* Hide button in header on mobile */
+    }
+    .hamburger {
+        display: block;
+    }
 }
 
 header.scrolled {
@@ -181,7 +278,7 @@ header.scrolled {
 }
 
 .logo-img {
-    height: 120px; /* Big, dominant branding */
+    height: 140px; /* Precise branding size after cropping - Re-balanced */
     width: auto;
     object-fit: contain;
     display: block;
@@ -196,21 +293,27 @@ header.scrolled {
 
 @media (max-width: 768px) {
     .logo-img {
-        height: 70px; /* Slightly smaller on mobile but still prominent */
+        height: 80px; /* Mobile scaled height */
     }
 }
 
 .tagline {
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 0.9vw, 0.8rem);
     font-weight: 400;
     color: var(--text-muted);
-    letter-spacing: 0.5px;
-    margin-top: 2px;
-    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    margin-top: 5px; /* Clean spacing below the cropped logo */
+    position: relative;
+    z-index: 2;
+    font-family: 'DM Sans', sans-serif;
 }
 
-@media (max-width: 576px) {
-    .tagline { display: none; } /* Hide tagline on very small mobile for space */
+@media (max-width: 768px) {
+    .tagline { margin-top: 2px; font-size: 0.65rem; }
+}
+
+@media (max-width: 480px) {
+    .tagline { font-size: 0.6rem; letter-spacing: 0.5px; } 
 }
 
 .nav-links {
@@ -218,13 +321,51 @@ header.scrolled {
     gap: 2rem;
 }
 
-.nav-links a:hover {
-    color: var(--primary-color);
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+        gap: 3rem;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .nav-links li {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: 0.5s ease;
+    }
+
+    .nav-links.active li {
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: calc(0.1s * var(--i, 0));
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        font-family: 'Cormorant Garamond', serif;
+    }
 }
 
 .hamburger {
     display: none;
     cursor: pointer;
+    z-index: 1001; /* Above mobile menu */
 }
 
 .hamburger span {
@@ -234,6 +375,18 @@ header.scrolled {
     background: var(--text-light);
     margin: 5px 0;
     transition: var(--transition);
+}
+
+.hamburger.toggle span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.toggle span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Buttons */
@@ -285,11 +438,12 @@ header.scrolled {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding-top: 80px; /* Space for fixed header */
 }
 
 .parallax-bg {
@@ -321,7 +475,7 @@ header.scrolled {
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: clamp(2rem, 6vw, 4.5rem);
     margin-bottom: 1.5rem;
     color: var(--text-light);
     background: linear-gradient(45deg, #fff, var(--primary-color));
@@ -331,7 +485,7 @@ header.scrolled {
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
     margin-bottom: 2.5rem;
     color: var(--text-muted);
 }
@@ -344,7 +498,7 @@ header.scrolled {
 
 /* Cards & Sections */
 .section-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 3rem);
     margin-bottom: 3rem;
     position: relative;
 }
@@ -482,16 +636,80 @@ header.scrolled {
 .series-card {
     display: flex;
     flex-direction: column;
+    height: 100%;
+}
+
+.series-card .card-image {
+    height: 220px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
 }
 
 .series-card .card-content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    padding: 1.5rem 0;
+}
+
+.series-title {
+    font-size: 1.6rem;
+    margin: 0.2rem 0 0.8rem 0;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #fff, #ccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.series-card .vibe {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-color);
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.series-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.spec-at-glance {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: rgba(153, 204, 51, 0.1);
+    border: 1px solid rgba(153, 204, 51, 0.3);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.series-card .specs {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .series-card .card-btns {
     margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.series-card .btn {
+    flex: 1;
+    min-width: 120px;
 }
 
 /* Why Us Items */
@@ -499,19 +717,54 @@ header.scrolled {
     text-align: center;
     padding: 2rem;
     transition: var(--transition);
+    border-radius: 16px;
+    border: 1px solid transparent;
+}
+
+.why-item:hover {
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid var(--glass-border);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), var(--shadow-glow);
 }
 
 .why-item i {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
+    font-size: 3.5rem; /* Make the icons pop */
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Apple-like spring bounce */
+    filter: drop-shadow(0 0 5px rgba(153, 204, 51, 0.1));
+}
+
+.why-item:hover i {
+    transform: scale(1.2) translateY(-10px);
+    color: #ffffff;
+    filter: drop-shadow(0 0 20px var(--primary-color));
 }
 
 .why-item h4 {
     margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.why-item:hover h4 {
+    color: var(--primary-color);
 }
 
 .why-item p {
     color: var(--text-muted);
+}
+
+/* Universal Icon Micro-interactions for Lists and Contact Info */
+.features-list i, .highlight-item i, .method i {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.features-list li:hover i, .highlight-item:hover i, .method:hover i {
+    transform: scale(1.3) rotate(5deg);
+    color: #ffffff;
+    filter: drop-shadow(0 0 15px var(--primary-color));
 }
 
 /* Product Placeholder */
@@ -674,51 +927,58 @@ header.scrolled {
     font-size: 0.9rem;
 }
 
-/* WhatsApp Float */
+/* WhatsApp Float with Pulsing Animation */
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
+    bottom: 100px; /* Moved up to avoid overlapping back-to-top button */
     right: 30px;
     background-color: #25d366;
     color: white;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    font-size: 35px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 1000;
+    z-index: 1001; /* Ensure always on top */
+    transition: var(--transition);
+    animation: waPulse 2s infinite;
 }
 
-/* Animations */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #25d366;
+    border-radius: 50%;
+    z-index: -1;
+    animation: waRipple 2s infinite;
 }
 
-.fade-in.appear, 
-.slide-in-left.appear, 
-.slide-in-right.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
 }
 
-.slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
+@keyframes waPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-.slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
+@keyframes waRipple {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
 }
 
-.fade-in, .slide-in-left, .slide-in-right, .section-title, .grid > * {
-    opacity: 1 !important; /* Force visibility */
-    transform: none !important;
+/* Animations - All animations are handled dynamically by GSAP */
+.fade-in, .slide-in-left, .slide-in-right, .section-title {
+    opacity: 1;
+    transform: none;
 }
 
 .check-list {
@@ -774,9 +1034,15 @@ header.scrolled {
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
     position: relative;
     padding: 3rem;
     animation: slideUp 0.4s ease-out;
+}
+
+.modal-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 @keyframes slideUp {
@@ -901,7 +1167,7 @@ select option {
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     font-size: 0.7rem;
-    font-family: 'Syncopate', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -911,7 +1177,7 @@ select option {
 
 .highlighted-card {
     border-color: var(--accent-color);
-    box-shadow: 0 0 20px rgba(237, 28, 36, 0.15);
+    box-shadow: 0 0 20px rgba(153, 204, 51, 0.15);
     background: rgba(20, 10, 10, 0.9);
 }
 
@@ -954,7 +1220,7 @@ select option {
 }
 
 .highlighted-card:hover {
-    box-shadow: 0 0 30px rgba(237, 28, 36, 0.4);
+    box-shadow: 0 0 30px rgba(153, 204, 51, 0.4);
     border-color: var(--accent-color);
 }
 
@@ -984,4 +1250,324 @@ select option {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
     display: block;
+}
+/* --- Smart UI Upgrades --- */
+
+/* Scroll Progress indicator */
+#scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 2000;
+    background: transparent;
+}
+
+#scroll-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#back-to-top:hover {
+    transform: translateY(-5px);
+    background: var(--accent-color);
+}
+
+/* Glassmorphism Refinements (Smarter Cards) */
+.glass-card {
+    position: relative;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Smart Hover Lighting Edge */
+.series-card::after, .coverage-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, var(--primary-color), transparent 50%) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.series-card:hover::after, .coverage-card:hover::after {
+    opacity: 1;
+}
+
+/* Fluid spacing fix for footer */
+.footer-bottom {
+    margin-top: clamp(2rem, 5vh, 4rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* Mobile Gallery Optimization */
+/* Mobile Product Series Optimization */
+@media (max-width: 768px) {
+    .product-series {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .series-card {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .series-card .card-image {
+        height: 250px;
+    }
+
+    .series-card .card-content {
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .series-card .card-btns {
+        flex-direction: row;
+    }
+}
+
+/* Ensure equal heights for all grids on desktop */
+@media (min-width: 769px) {
+    .product-series .series-card {
+        height: 100%;
+    }
+}
+
+/* --- FINAL RESPONSIVE OVERRIDES (FORCE STACKING) --- */
+@media (max-width: 991px) {
+    .grid-2, .grid-3, .grid-4, .grid {
+        grid-template-columns: 1fr !important;
+        display: grid !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Fix overlapping in Coverage Section */
+    .coverage-card {
+        margin-bottom: 1.5rem;
+        height: auto !important;
+    }
+
+    /* Fix About Section stacking */
+    .about .grid-2 {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .about-image {
+        height: 300px;
+        order: 1;
+    }
+
+    .about-text {
+        order: 2;
+    }
+
+    /* Fix Contact Section overlap */
+    #contact .grid-2 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+
+    /* Mobile Menu Visibility Fix */
+    .nav-links {
+        display: flex !important; /* Always flex but offscreen */
+        pointer-events: none;
+    }
+    
+    .nav-links.active {
+        pointer-events: auto;
+    }
+
+    /* Hero Padding for Fixed Header */
+    .hero {
+        padding-top: 100px !important;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem !important;
+    }
+
+    /* Section spacing */
+    .section {
+        padding: 4rem 0 !important;
+    }
+}
+
+/* Specific fix for Gallery and Products that might be using grid-3 */
+@media (max-width: 768px) {
+    .gallery .grid-3, .products .grid-3, .why-us .grid-3 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* --- APPLIED NEW STYLES --- */
+
+/* Sticky Nav fixes */
+header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+}
+
+/* Typography for general elements */
+body, p, li, label, input, textarea, button, a, span {
+    font-family: 'DM Sans', sans-serif;
+}
+h1, h2, h3, h4, .logo-link {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* Alignment Audit */
+/* Ensure all sections have consistent vertical spacing */
+.section {
+    padding: 80px 0 !important;
+}
+
+/* All section headings centered unless in grid/flex (handling generic here, mostly text-center is used) */
+.section-title {
+    text-align: center;
+}
+.grid-2 .section-title, .grid-3 .section-title, .grid-4 .section-title {
+    /* If inside grid, leave left-aligned by resetting or ignoring, but the prompt says:
+       "All section headings (h2, h3) must be text-align: center unless they are inside a two-column flex/grid layout"
+       We can add a rule for .section-title */
+}
+/* Overriding specific alignment for headings */
+h2, h3 {
+    text-align: center;
+}
+.grid h2, .grid h3, .flex h2, .flex h3, .grid-2 h2, .grid-2 h3 {
+    text-align: left;
+}
+
+/* All cards inside a grid must have identical padding */
+.grid [class*="card"], .grid [class*="item"], .grid [class*="box"] {
+    padding: 2rem !important;
+}
+
+/* All CTA buttons that sit alone must be centered */
+.btn {
+    /* To not affect header buttons, target ones in section */
+}
+.section > .btn, .container > .btn {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+/* All icon-text pairs */
+.features-list li, .why-item h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Back to Home Button */
+.back-home-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  padding: 10px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.back-home-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Glassmorphism for Cards */
+main [class*="card"], main [class*="box"], main [class*="item"], main [class*="package"], main [class*="tier"],
+section [class*="card"], section [class*="box"], section [class*="item"], section [class*="package"], section [class*="tier"] {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 16px !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Glassmorphism for Buttons */
+section .btn, section .btn-primary, section .cta-btn, section .quote-btn, section button,
+main .btn, main .btn-primary, main .cta-btn, main .quote-btn, main button {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-radius: 40px !important;
+    transition: all 0.3s ease !important;
+}
+section .btn:hover, section .btn-primary:hover, section .cta-btn:hover, section .quote-btn:hover, section button:hover,
+main .btn:hover, main .btn-primary:hover, main .cta-btn:hover, main .quote-btn:hover, main button:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Exclusions from Glassmorphism */
+header [class*="item"], footer [class*="item"] {
+    background: transparent !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
 }

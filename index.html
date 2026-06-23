@@ -16,7 +16,7 @@
     <!-- Montserrat and Lato Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    
     
     <!-- CSS Links -->
     <link rel="stylesheet" href="style.css">
@@ -73,8 +73,14 @@
             emailjs.init("YOUR_PUBLIC_KEY");
         })();
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress"></div>
+    </div>
 
     <!-- Header -->
     <header id="header">
@@ -82,17 +88,17 @@
             <div class="logo">
                 <a href="#home" class="logo-link">
                     <div class="logo-container">
-                        <img src="images/logo_new.png" alt="Wrap God PPF Coimbatore Logo" class="logo-img">
+                        <img src="images/logo_final.png" alt="Wrap God PPF Coimbatore Logo" class="logo-img">
                         <span class="tagline">Invisible Protection. Unmatched Perfection.</span>
                     </div>
                 </a>
             </div>
             <nav id="nav">
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li style="--i: 0;"><a href="#home">Home</a></li>
+                    <li style="--i: 1;"><a href="#about">About Us</a></li>
+                    <li style="--i: 2;"><a href="#services">Services</a></li>
+                    <li style="--i: 3;"><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="header-cta">
@@ -111,7 +117,7 @@
         <div class="parallax-bg" style="background-image: url('images/hero.png');"></div>
         <div class="overlay"></div>
         <div class="container hero-content">
-            <h1 class="fade-in">Best Paint Protection Film in Coimbatore</h1>
+            <h1 class="fade-in">Best Paint Protection Film in India</h1>
             <p class="fade-in">Protect Your Car with Premium PPF Coating. Maintaining that showroom shine has never been easier.</p>
             <div class="hero-btns fade-in">
                 <a href="#contact" class="btn btn-primary">Book Now</a>
@@ -151,72 +157,64 @@
                         <div class="series-badge">5-YEAR</div>
                     </div>
                     <div class="card-content">
-                        <span class="vibe">The Vibe: The foundational energy and invisible shield.</span>
-                        <h3>AURA Series</h3>
+                        <span class="vibe">The Foundational Shield</span>
+                        <h3 class="series-title">AURA Series</h3>
                         <p>Essential 6.5 MIL TPU barrier with signature self-healing and extreme hydrophobicity.</p>
-                        <div class="specs">
-                            <span><i class="fas fa-layer-group"></i> 6.5 MIL TPU</span>
-                        </div>
+                        <div class="spec-at-glance">6.5 MIL TPU</div>
                         <div class="card-btns">
-                            <button class="btn btn-primary btn-sm learn-more">Learn Detailed Specs</button>
-                            <a href="contact.html" class="btn btn-outline btn-sm">Get Quote</a>
+                            <button class="btn btn-primary btn-sm learn-more" id="learn-aura">Specs</button>
+                            <a href="contact.html" class="btn btn-outline btn-sm">Quote</a>
                         </div>
                     </div>
                 </div>
                 <!-- CENTURION Series -->
                 <div class="series-card glass-card fade-in" data-series="centurion">
                     <div class="card-image">
-                        <img src="images/ppf-detail-3.png" alt="CENTURION Series 8-Year Protection" loading="lazy">
+                        <img src="images/ppf-detail-1.png" alt="CENTURION Series 8-Year Protection" loading="lazy">
                         <div class="series-badge">8-YEAR</div>
                     </div>
                     <div class="card-content">
-                        <span class="vibe">The Vibe: The armored, professional-grade defender.</span>
-                        <h3>CENTURION Series</h3>
+                        <span class="vibe">The Standard Defender</span>
+                        <h3 class="series-title">CENTURION Series</h3>
                         <p>Enhanced 7.5 MIL TPU construction for the daily driver who demands more.</p>
-                        <div class="specs">
-                            <span><i class="fas fa-layer-group"></i> 7.5 MIL TPU</span>
-                        </div>
+                        <div class="spec-at-glance">7.5 MIL TPU</div>
                         <div class="card-btns">
-                            <button class="btn btn-primary btn-sm learn-more">Learn Detailed Specs</button>
-                            <a href="contact.html" class="btn btn-outline btn-sm">Get Quote</a>
+                            <button class="btn btn-primary btn-sm learn-more" id="learn-centurion">Specs</button>
+                            <a href="contact.html" class="btn btn-outline btn-sm">Quote</a>
                         </div>
                     </div>
                 </div>
                 <!-- DEMIGOD Series -->
                 <div class="series-card glass-card fade-in" data-series="demigod">
                     <div class="card-image">
-                        <img src="images/ppf-detail-4.png" alt="DEMIGOD Series 10-Year Protection" loading="lazy">
+                        <img src="images/ppf-detail-1.png" alt="DEMIGOD Series 10-Year Protection" loading="lazy">
                         <div class="series-badge">10-YEAR</div>
                     </div>
                     <div class="card-content">
-                        <span class="vibe">The Vibe: The elite, near-invincible layer of strength.</span>
-                        <h3>DEMIGOD Series</h3>
+                        <span class="vibe">The Elite Armor</span>
+                        <h3 class="series-title">DEMIGOD Series</h3>
                         <p>Elite-level armor at 8.5 MIL thickness. Built to dominate for a decade.</p>
-                        <div class="specs">
-                            <span><i class="fas fa-layer-group"></i> 8.5 MIL TPU</span>
-                        </div>
+                        <div class="spec-at-glance">8.5 MIL TPU</div>
                         <div class="card-btns">
-                            <button class="btn btn-primary btn-sm learn-more">Learn Detailed Specs</button>
-                            <a href="contact.html" class="btn btn-outline btn-sm">Get Quote</a>
+                            <button class="btn btn-primary btn-sm learn-more" id="learn-demigod">Specs</button>
+                            <a href="contact.html" class="btn btn-outline btn-sm">Quote</a>
                         </div>
                     </div>
                 </div>
                 <!-- IMMORTAL Series -->
                 <div class="series-card glass-card fade-in highlighted-card" data-series="immortal">
                     <div class="card-image">
-                        <img src="images/ppf-detail-5.png" alt="IMMORTAL Series Lifetime Protection" loading="lazy">
+                        <img src="images/ppf-detail-1.png" alt="IMMORTAL Series Lifetime Protection" loading="lazy">
                         <div class="series-badge badge-ultimate">LIFETIME</div>
                     </div>
                     <div class="card-content">
-                        <span class="vibe">The Vibe: The ultimate, everlasting armor.</span>
-                        <h3>IMMORTAL Series</h3>
+                        <span class="vibe">The Ultimate Armor</span>
+                        <h3 class="series-title">IMMORTAL Series</h3>
                         <p>The pinnacle of PPF. 9.5 MIL ultra-thick TPU offering unrivaled gloss.</p>
-                        <div class="specs">
-                            <span><i class="fas fa-layer-group"></i> 9.5 MIL TPU</span>
-                        </div>
+                        <div class="spec-at-glance">9.5 MIL TPU</div>
                         <div class="card-btns">
-                            <button class="btn btn-primary btn-sm learn-more">Learn Detailed Specs</button>
-                            <a href="contact.html" class="btn btn-outline btn-sm">Get Quote</a>
+                            <button class="btn btn-primary btn-sm learn-more" id="learn-immortal">Specs</button>
+                            <a href="contact.html" class="btn btn-outline btn-sm">Quote</a>
                         </div>
                     </div>
                 </div>
@@ -488,7 +486,7 @@
         <div class="container text-center">
             <div class="footer-logo">
                 <a href="#home">
-                    <img src="images/logo_new.png" alt="Wrap God PPF Logo" class="logo-img" style="margin: 0 auto; height: 75px;">
+                    <img src="images/logo_final.png" alt="Wrap God PPF Logo" class="logo-img" style="margin: 0 auto;">
                     <span class="tagline" style="display: block; margin-top: 5px;">Invisible Protection. Unmatched Perfection.</span>
                 </a>
             </div>
@@ -500,7 +498,7 @@
                 <li><a href="#"><i class="fab fa-youtube"></i></a></li>
             </ul>
             <div class="footer-bottom">
-                <p>&copy; 2026 PPF Coimbatore. All rights reserved.</p>
+                <p>&copy; <span id="current-year"></span> PPF Coimbatore. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -519,6 +517,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>

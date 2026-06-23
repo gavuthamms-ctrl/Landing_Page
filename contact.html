@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    
     
     <!-- CSS Links -->
     <link rel="stylesheet" href="style.css">
@@ -38,15 +38,21 @@
             emailjs.init("YOUR_PUBLIC_KEY");
         })();
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress"></div>
+    </div>
 
     <!-- Header -->
     <header id="header" class="scrolled">
         <div class="container nav-wrapper">
             <div class="logo">
                 <a href="index.html">
-                    <img src="images/logo_new.png" alt="Wrap God PPF Logo" class="logo-img">
+                    <img src="images/logo_final.png" alt="Wrap God PPF Logo" class="logo-img">
                 </a>
             </div>
             <nav id="nav">
@@ -158,7 +164,7 @@
     <footer class="footer">
         <div class="container text-center">
             <div class="footer-logo" style="margin-bottom: 1rem;">
-                <img src="images/logo_new.png" alt="Wrap God PPF Logo" class="logo-img" style="margin: 0 auto; height: 75px;">
+                <img src="images/logo_final.png" alt="Wrap God PPF Logo" class="logo-img" style="margin: 0 auto;">
             </div>
             <p>Premium Paint Protection Film Services in Coimbatore. Excellence in every detail.</p>
             <ul class="social-icons">
@@ -167,13 +173,19 @@
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fab fa-youtube"></i></a></li>
             </ul>
-            <p>&copy; 2026 Wrap God PPF Coimbatore. All rights reserved.</p>
+            <p>&copy; <span id="current-year"></span> Wrap God PPF Coimbatore. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script src="script.js" defer></script>
+    <a href="index.html" class="back-home-btn">&larr; Back to Home</a>
 </body>
 </html>
