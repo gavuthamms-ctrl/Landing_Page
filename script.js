@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroSection && floatingActions) heroObserver.observe(heroSection);
 
     // Navbar opacity reduction when scrolled past hero section (Change 2)
-    const navbar = document.querySelector('nav') || document.querySelector('.navbar') || document.querySelector('header');
+    const navbar = document.getElementById('header') || document.querySelector('header');
     const heroForNav = document.querySelector('#home') || document.querySelector('.hero') || document.querySelector('section:first-of-type');
 
     const navObserver = new IntersectionObserver((entries) => {
