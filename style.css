@@ -278,7 +278,7 @@ header.scrolled {
 }
 
 .logo-img {
-    height: 140px; /* Precise branding size after cropping - Re-balanced */
+    height: 60px; /* Precise branding size after cropping - Re-balanced */
     width: auto;
     object-fit: contain;
     display: block;
@@ -293,7 +293,7 @@ header.scrolled {
 
 @media (max-width: 768px) {
     .logo-img {
-        height: 80px; /* Mobile scaled height */
+        height: 45px; /* Mobile scaled height */
     }
 }
 
@@ -1537,8 +1537,7 @@ h2, h3 {
 }
 
 /* Glassmorphism for Cards */
-main [class*="card"], main [class*="box"], main [class*="item"], main [class*="package"], main [class*="tier"],
-section [class*="card"], section [class*="box"], section [class*="item"], section [class*="package"], section [class*="tier"] {
+.series-card, .coverage-card, .why-item, .gallery-item, .service-card, .faq-item, .philosophy-box, .contact-card, .glass-card {
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     border-radius: 16px !important;
