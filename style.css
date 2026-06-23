@@ -255,7 +255,7 @@ header.scrolled {
 }
 
 .navbar-scrolled {
-  background: rgba(0, 0, 0, 0.65) !important; /* or whatever the navbar background color is, at 65% opacity */
+  background: rgba(0, 0, 0, 0.5) !important; /* navbar background color at 50% opacity */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: background 0.4s ease;
