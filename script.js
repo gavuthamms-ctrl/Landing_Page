@@ -362,4 +362,40 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Scroll detection for floating actions visibility (Change 1)
+    const heroSection = document.querySelector('#home') || document.querySelector('.hero') || document.querySelector('section:first-of-type');
+    const floatingActions = document.querySelector('.floating-actions');
+
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (floatingActions) {
+          if (entry.isIntersecting) {
+            floatingActions.classList.remove('visible');
+          } else {
+            floatingActions.classList.add('visible');
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (heroSection && floatingActions) heroObserver.observe(heroSection);
+
+    // Navbar opacity reduction when scrolled past hero section (Change 2)
+    const navbar = document.querySelector('nav') || document.querySelector('.navbar') || document.querySelector('header');
+    const heroForNav = document.querySelector('#home') || document.querySelector('.hero') || document.querySelector('section:first-of-type');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (navbar) {
+          if (entry.isIntersecting) {
+            navbar.classList.remove('navbar-scrolled');
+          } else {
+            navbar.classList.add('navbar-scrolled');
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (heroForNav && navbar) navObserver.observe(heroForNav);
 });

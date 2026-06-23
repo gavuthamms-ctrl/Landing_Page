@@ -254,6 +254,13 @@ header.scrolled {
     box-shadow: var(--shadow-glow);
 }
 
+.navbar-scrolled {
+  background: rgba(0, 0, 0, 0.65) !important; /* or whatever the navbar background color is, at 65% opacity */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.4s ease;
+}
+
 .nav-wrapper {
     display: flex;
     justify-content: space-between;
@@ -494,6 +501,12 @@ header.scrolled {
     display: flex;
     gap: 1.5rem;
     justify-content: center;
+}
+
+.hero .hero-btns .btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: #ffffff !important;
 }
 
 /* Cards & Sections */
@@ -925,6 +938,16 @@ header.scrolled {
     border-top: 1px solid var(--glass-border);
     color: var(--text-muted);
     font-size: 0.9rem;
+}
+
+.floating-actions {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.floating-actions.visible {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /* Floating CTA Buttons */
